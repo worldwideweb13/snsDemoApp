@@ -1,0 +1,25 @@
+{
+  "name": "snsdemoapp",
+  "version": "1.0.0",
+  "description": "snsデモアプリのバックエンドリポジトリ",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/worldwideweb13/snsDemoApp.git"
+  },
+  "author": "worldwideweb13",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/worldwideweb13/snsDemoApp/issues"
+  },
+  "homepage": "https://github.com/worldwideweb13/snsDemoApp#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "helmet": "^5.0.2",
+    "mongoose": "^6.3.2",
+    "nodemon": "^2.0.16"
+  }
+}
