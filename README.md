@@ -19,5 +19,11 @@ expressm mongoose(node.jsとmongoDBを連携するためのライブラリー), 
 $ npm i express mongoose nodemon helmet
 ```
 
+.envファイルに必要な環境変数を設定を記述(mongoDBのパスワードなど)し、.envを読み込むように記述しています。
+```
+$ npm i env
+```
+
+
 [package.json](package.json)
 "scripts"　欄にコードを記述することで`npm run name` で登録名(name)でコマンド実行が可能になる。 
