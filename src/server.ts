@@ -1,8 +1,19 @@
+import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
 import userRoute from "./routes/users";
 import authRoute from "./routes/auth";
 import postRoute from "./routes/posts";
 import mongoose from "mongoose";
+
+// データベース接続
+mongoose
+  .connect(process.env.MONGOURL!)
+  .then(() => {
+    console.log("DBと接続中....");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const app = express();
 const PORT = 3000;
