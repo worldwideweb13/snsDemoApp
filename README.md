@@ -19,6 +19,8 @@ expressm mongoose(node.jsとmongoDBを連携するためのライブラリー), 
 $ npm i express mongoose nodemon helmet
 ```
 
+### mongoDBとの接続設定
+
 .envファイルに必要な環境変数を設定を記述(mongoDBのパスワードなど)し、.envを読み込むように記述しています。
 ```
 $ npm i env
