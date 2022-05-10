@@ -1,7 +1,5 @@
 # snsDemoApp
 
-# typeScript
-
 ### 概要
 * 学習期間: 2022年4月~5月 
 * 使用技術: TypeScript, Express, React,
