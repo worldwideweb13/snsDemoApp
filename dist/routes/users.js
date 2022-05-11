@@ -7,4 +7,5 @@ const router = (0, express_1.Router)();
 router.get("/:id", user_1.getUser);
 router.put("/:id", user_1.updateUser);
 router.delete("/:id", user_1.deleteUser);
+router.put('/:id/follow', user_1.followUser);
 exports.default = router;

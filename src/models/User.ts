@@ -2,7 +2,12 @@ import mongoose from "mongoose";
 import { Schema, model, connect } from "mongoose";
 
 // 1. Create an interface representing a document in MongoDB.
-export interface IUser {
+
+interface MongoResult {
+  _doc: any;
+}
+
+export interface IUser extends mongoose.Document, MongoResult {
   username: string;
   email: string;
   password: string;
@@ -13,6 +18,8 @@ export interface IUser {
   isAdmin: boolean;
   desc?: String;
   city?: String;
+  createdAt: string | Date;
+  updatedAt: string | Date;
 }
 
 const UserSchema = new Schema<IUser>(

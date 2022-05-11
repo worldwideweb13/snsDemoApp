@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUser = exports.deleteUser = exports.updateUser = void 0;
+exports.followUser = exports.getUser = exports.deleteUser = exports.updateUser = void 0;
 const User_1 = __importDefault(require("../models/User"));
 const updateUser = async (req, res) => {
     if (req.body.userId === req.params.id ||
@@ -49,10 +49,23 @@ exports.deleteUser = deleteUser;
 const getUser = async (req, res) => {
     try {
         const user = await User_1.default.findById(req.params.id);
-        res.status(200).json(user);
+        const { password, updatedAt, ...other } = user._doc;
+        res.status(200).json(other);
     }
     catch (err) {
         return res.status(500).json(err);
     }
 };
 exports.getUser = getUser;
+// ユーザーのフォロー
+const followUser = async (req, res) => {
+    try {
+        const user = await User_1.default.findById(req.params.id);
+        const { password, updatedAt, ...other } = user._doc;
+        res.status(200).json(other);
+    }
+    catch (err) {
+        return res.status(500).json(err);
+    }
+};
+exports.followUser = followUser;
