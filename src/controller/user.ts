@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
 import User, { IUser } from "../models/User";
+import router from "../routes/users";
 
 export const updateUser: RequestHandler<{ id: string }> = async (req, res) => {
   if (
@@ -44,9 +45,20 @@ export const deleteUser: RequestHandler<{ id: string }> = async (req, res) => {
 // ユーザー情報の取得
 export const getUser: RequestHandler<{ id: string }> = async (req, res) => {
   try {
-    const user: IUser = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id);
+    const { password, updatedAt, ...other } = user!._doc;
+    res.status(200).json(other);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
 
-    res.status(200).json(user);
+// ユーザーのフォロー
+export const followUser: RequestHandler<{ id: string }> = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const { password, updatedAt, ...other } = user!._doc;
+    res.status(200).json(other);
   } catch (err) {
     return res.status(500).json(err);
   }

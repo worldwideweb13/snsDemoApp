@@ -8,7 +8,7 @@ export const registUser: RequestHandler = async (req, res) => {
       email: (req.body as { email: string }).email,
       password: (req.body as { password: string }).password,
     });
-    const user: IUser = await newUser.save();
+    const user = await newUser.save();
     return res.status(200).json(user);
   } catch (err) {
     return res.status(500).json(err);
@@ -18,7 +18,7 @@ export const registUser: RequestHandler = async (req, res) => {
 // ログイン
 export const loginUser: RequestHandler = async (req, res) => {
   try {
-    const user: IUser = await User.findOne({
+    const user = await User.findOne({
       email: (req.body as { email: string }).email,
     });
     if (!user) return res.status(404).send("ユーザーが見つかりません");
