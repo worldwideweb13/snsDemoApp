@@ -1,5 +1,5 @@
 import { Router, RequestHandler } from "express";
-import { updateUser, deleteUser, getUser, followUser } from "../controller/user";
+import { updateUser, deleteUser, getUser, followUser, unFollowUser } from "../controller/user";
 
 const router = Router();
 
@@ -7,6 +7,10 @@ const router = Router();
 router.get("/:id", getUser);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
+
+// ユーザーのフォロー
 router.put('/:id/follow', followUser)
+// フォロー解除
+router.put('/:id/unfollow', unFollowUser)
 
 export default router;
