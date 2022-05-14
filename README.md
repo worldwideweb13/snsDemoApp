@@ -2,7 +2,7 @@
 
 ### 概要
 * 学習期間: 2022年4月~5月 
-* 使用技術: TypeScript, Express, React,
+* 使用技術: TypeScript, Express, React, Node.js
 * 使用API: GoogleMapAP
 
 typeScriptの自学習用リポジトリ。"TS-プロジェクト名"でリポジトリを分けて、分野毎の学習しました。
@@ -24,6 +24,7 @@ $ npm i express mongoose nodemon helmet
 $ npm i env
 ```
 
-
 [package.json](package.json)
 "scripts"　欄にコードを記述することで`npm run name` で登録名(name)でコマンド実行が可能になる。 
+
+
