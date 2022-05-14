@@ -3,7 +3,7 @@
 ### 概要
 * 学習期間: 2022年4月~5月 
 * 使用技術: TypeScript, Express, React, Node.js
-* 使用API: GoogleMapAP
+* 開発環境: GitHub,Postman
 
 typeScriptの自学習用リポジトリ。"TS-プロジェクト名"でリポジトリを分けて、分野毎の学習しました。
 
