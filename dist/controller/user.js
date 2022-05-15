@@ -69,7 +69,10 @@ const followUser = async (req, res) => {
               followers.includes()...includes(id)で配列から引数に一致する検索、ない場合はfalse
               followersは配列なのでincludes()を利用可
             */
-            if (!user.followers.includes(req.body.userId)) {
+            if (currentUser &&
+                user &&
+                user.followers &&
+                user.followers.includes(req.body.userId)) {
                 // フォローされたアカウントのフォロワー一覧に追加
                 await user.updateOne({
                     $push: {
@@ -111,7 +114,10 @@ const unFollowUser = async (req, res) => {
            followers.includes()...includes(id)で配列から引数に一致する検索、ない場合はfalse
            followersは配列なのでincludes()を利用可
           */
-            if (user.followers.includes(req.body.userId)) {
+            if (currentUser &&
+                user &&
+                user.followers &&
+                user.followers.includes(req.body.userId)) {
                 // フォローされたアカウントのフォロワー一覧から削除
                 await user.updateOne({
                     $pull: {

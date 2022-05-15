@@ -1,6 +1,5 @@
 import { RequestHandler } from "express";
-import User, { IUser } from "../models/User";
-import router from "../routes/users";
+import User from "../models/User";
 
 export const updateUser: RequestHandler<{ id: string }> = async (req, res) => {
   if (
@@ -67,7 +66,12 @@ export const followUser: RequestHandler<{ id: string }> = async (req, res) => {
         followers.includes()...includes(id)で配列から引数に一致する検索、ない場合はfalse
         followersは配列なのでincludes()を利用可
       */
-      if (!user.followers.includes((req.body as { userId: string }).userId)) {
+      if (
+        currentUser &&
+        user &&
+        user.followers &&
+        user.followers.includes((req.body as { userId: string }).userId)
+      ) {
         // フォローされたアカウントのフォロワー一覧に追加
         await user.updateOne({
           $push: {
@@ -111,7 +115,12 @@ export const unFollowUser: RequestHandler<{ id: string }> = async (
      followers.includes()...includes(id)で配列から引数に一致する検索、ない場合はfalse
      followersは配列なのでincludes()を利用可
     */
-      if (user.followers.includes((req.body as { userId: string }).userId)) {
+      if (
+        currentUser &&
+        user &&
+        user.followers &&
+        user.followers.includes((req.body as { userId: string }).userId)
+      ) {
         // フォローされたアカウントのフォロワー一覧から削除
         await user.updateOne({
           $pull: {
