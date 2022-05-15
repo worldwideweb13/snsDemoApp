@@ -144,3 +144,5 @@ export const unFollowUser: RequestHandler<{ id: string }> = async (
     return res.status(500).json("自分自身をフォロー解除できません");
   }
 };
+
+

@@ -13,8 +13,8 @@ export interface IUser extends Document, MongoResult {
   password: string;
   profilePicture?: String;
   coverPicture?: String;
-  followers?: String;
-  followings?: String;
+  followers?: Array<String>;
+  followings?: Array<String>;
   isAdmin: boolean;
   desc?: String;
   city?: String;
