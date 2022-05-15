@@ -3,8 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.likePost = exports.getPost = exports.deletePost = exports.updatePost = exports.createPost = void 0;
+exports.timeLinePost = exports.likePost = exports.getPost = exports.deletePost = exports.updatePost = exports.createPost = void 0;
 const Post_1 = __importDefault(require("../models/Post"));
+const User_1 = __importDefault(require("../models/User"));
 const createPost = async (req, res) => {
     const newPost = new Post_1.default(req.body);
     try {
@@ -97,3 +98,27 @@ const likePost = async (req, res) => {
     }
 };
 exports.likePost = likePost;
+// タイムラインの投稿を取得
+const timeLinePost = async (req, res) => {
+    try {
+        const currentUser = await User_1.default.findById(req.body.userId);
+        const userPosts = await Post_1.default.find({ userId: currentUser._id });
+        // 友達の投稿内容を取得する
+        if (currentUser.followings) {
+            const friendPosts = await Promise.all(
+            /*
+             map()関数を使いfollowing配列からIdを一件ずつ取り出して、ID毎の投稿一覧の配列を作成する
+             concat()...mongoose関数でオブジェクト結合を行う
+             friendPostsの構造は{{投稿1,投稿2...},{}}になっているのでスプレッド構文で展開
+            */
+            currentUser.followings.map((friendId) => {
+                return Post_1.default.find({ userId: friendId });
+            }));
+            return res.status(200).json(userPosts.concat(...friendPosts));
+        }
+    }
+    catch (err) {
+        return res.status(500).json(err);
+    }
+};
+exports.timeLinePost = timeLinePost;

@@ -72,7 +72,7 @@ const followUser = async (req, res) => {
             if (currentUser &&
                 user &&
                 user.followers &&
-                user.followers.includes(req.body.userId)) {
+                !user.followers.includes(req.body.userId)) {
                 // フォローされたアカウントのフォロワー一覧に追加
                 await user.updateOne({
                     $push: {

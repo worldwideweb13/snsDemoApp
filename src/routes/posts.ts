@@ -5,6 +5,7 @@ import {
   deletePost,
   getPost,
   likePost,
+  timeLinePost,
 } from "../controller/post";
 const router = Router();
 
@@ -14,4 +15,5 @@ router.put("/:postId", updatePost);
 router.delete("/:postId", deletePost);
 router.get("/:postId", getPost);
 router.put("/:postId/like", likePost);
+router.get("/timeline/all", timeLinePost);
 export default router;
