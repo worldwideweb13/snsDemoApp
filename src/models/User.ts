@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Schema, model, connect } from "mongoose";
+import { Schema, model, Document } from "mongoose";
 
 // 1. Create an interface representing a document in MongoDB.
 
@@ -7,7 +7,7 @@ interface MongoResult {
   _doc: any;
 }
 
-export interface IUser extends mongoose.Document, MongoResult {
+export interface IUser extends Document, MongoResult {
   username: string;
   email: string;
   password: string;
