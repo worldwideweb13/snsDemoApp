@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updatePost = exports.createPost = void 0;
+exports.getPost = exports.deletePost = exports.updatePost = exports.createPost = void 0;
 const Post_1 = __importDefault(require("../models/Post"));
 const createPost = async (req, res) => {
     const newPost = new Post_1.default(req.body);
@@ -34,3 +34,38 @@ const updatePost = async (req, res) => {
     }
 };
 exports.updatePost = updatePost;
+// 投稿の削除
+const deletePost = async (req, res) => {
+    try {
+        const post = await Post_1.default.findById(req.params.postId);
+        if (post &&
+            post.userId ===
+                req.body.userId) {
+            await post.deleteOne();
+            return res.status(200).json("投稿削除に成功しました！");
+        }
+        else {
+            return res.status(403).json("他の人の投稿を削除することはできません");
+        }
+    }
+    catch (err) {
+        return res.status(400).json(err);
+    }
+};
+exports.deletePost = deletePost;
+// 特定の投稿を取得する
+const getPost = async (req, res) => {
+    try {
+        const post = await Post_1.default.findById(req.params.postId);
+        if (post) {
+            return res.status(200).json(post);
+        }
+        else {
+            return res.status(403).json("投稿が存在しません");
+        }
+    }
+    catch (err) {
+        return res.status(400).json(err);
+    }
+};
+exports.getPost = getPost;
