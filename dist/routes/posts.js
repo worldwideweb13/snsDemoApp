@@ -9,4 +9,5 @@ router.put("/:postId", post_1.updatePost);
 router.delete("/:postId", post_1.deletePost);
 router.get("/:postId", post_1.getPost);
 router.put("/:postId/like", post_1.likePost);
+router.get("/timeline/all", post_1.timeLinePost);
 exports.default = router;

@@ -70,7 +70,7 @@ export const followUser: RequestHandler<{ id: string }> = async (req, res) => {
         currentUser &&
         user &&
         user.followers &&
-        user.followers.includes((req.body as { userId: string }).userId)
+        !user.followers.includes((req.body as { userId: string }).userId)
       ) {
         // フォローされたアカウントのフォロワー一覧に追加
         await user.updateOne({
