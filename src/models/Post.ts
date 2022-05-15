@@ -9,7 +9,7 @@ export interface IPostSchema extends Document, MongoResult {
   userId: String;
   desc: String;
   img: String;
-  likes: {};
+  likes: Array<String>;
   createdAt: string | Date;
   updatedAt: string | Date;
 }

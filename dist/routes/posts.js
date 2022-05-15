@@ -8,4 +8,5 @@ router.post("/", post_1.createPost);
 router.put("/:postId", post_1.updatePost);
 router.delete("/:postId", post_1.deletePost);
 router.get("/:postId", post_1.getPost);
+router.put("/:postId/like", post_1.likePost);
 exports.default = router;

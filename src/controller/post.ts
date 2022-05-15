@@ -65,3 +65,32 @@ export const getPost: RequestHandler<{ postId: String }> = async (req, res) => {
     return res.status(400).json(err);
   }
 };
+
+// 投稿のいいねボタン機能
+export const likePost: RequestHandler<{ postId: String }> = async (
+  req,
+  res
+) => {
+  try {
+    const post = await Post.findById(req.params.postId);
+    // まだ投稿にいいねが押されていなかったらいいねを押せる
+    if (post && !post.likes.includes((req.body as { userId: String }).userId)) {
+      await post.updateOne({
+        $push: {
+          likes: (req.body as { userId: String }).userId,
+        },
+      });
+      return res.status(200).json("投稿にいいねを押しました！");
+    } else {
+      // いいねをしているユーザーIDを取り除く
+      await post?.updateOne({
+        $pull: {
+          likes: (req.body as { userId: String }).userId,
+        },
+      });
+      return res.status(200).json("いいねを解除しました！");
+    }
+  } catch (err) {
+    res.json(400).json(err);
+  }
+};
